@@ -2,7 +2,7 @@
 from os import getenv
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(".env")
 
 BOT_TOKEN = getenv("BOT_TOKEN")
 API_ID = int(getenv("API_ID") or 0)
