@@ -88,7 +88,7 @@ async def start_bot():
 home_keyboard_pm = InlineKeyboardMarkup(
     [
         [
-            InlineKeyboardButton(text="Perintah ❓", callback_data="bot_commands"),
+            InlineKeyboardButton(text="Perintah ❓", callback_data="perintah"),
             InlineKeyboardButton(
                 text="Jasa BOT",
                 url="https://t.me/jasa_kirito",
@@ -229,6 +229,16 @@ Saya adalah Bot Musik Dan Juga Dapat Membantu Kamu Untuk Mengelola Grup . Jika a
         keyboard,
     )
 
+@app.om_callback_query(filters.refex("perintah"))
+async def perintah_callbacc(_, CallbackQuery):
+    text = "Silahkan pilih menu perintah dibawah"
+    pbut = InlineKeyboardMarkup([
+                        [InlineKeyboardButton(text="Music", callback_data="pmusic"),
+                         InlineKeyboardButton(text="Manage", callback_data="bot_commands"),
+                        ]
+                   ]
+                )
+    await message.reply(text, reply_markup=pbut)
 
 @app.on_callback_query(filters.regex("bot_commands"))
 async def commands_callbacc(_, CallbackQuery):
